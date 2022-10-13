@@ -1,0 +1,153 @@
+use_debug false
+sam = "C:/Users/dsoub/OneDrive/Desktop/sample tune/"
+
+
+define :piano1ANDFlute2 do
+  live_loop :piano1Replace do
+    
+    with_fx :reverb,amp:2 ,mix:0.6,pan:rrand(-1,1) do
+      use_synth :piano
+      
+      play choose(chord(:a2, :m11)),  cutoff: rrand(60, 120)
+      sleep 0.5
+      play choose(chord(:d4, :m11)),  cutoff: rrand(60, 120)
+      sleep 0.25
+      play choose(chord(:a2, :m11)), cutoff: rrand(60, 120)
+      
+      
+      play choose(chord(:e4, :m11)), release: 0.3, cutoff: rrand(60, 120)
+      sleep 0.5
+      play choose(chord(:d4, :m11)), release: 0.3, cutoff: rrand(60, 120)
+      sleep 0.25
+      play choose(chord(:a1, :m11)), release: 0.3, cutoff: rrand(60, 120)
+      
+      
+      
+      play choose(chord(:e4, :m11)), release: 0.3, cutoff: rrand(60, 120)
+      sleep 0.5
+      play choose(chord(:d4, :m11)), release: 0.3, cutoff: rrand(60, 120)
+      sleep 0.25
+      
+      play choose(chord(:f4, :m11)),  cutoff: rrand(60, 120)
+      sleep 0.5
+      
+      play choose(chord(:g4, :m11)),  cutoff: rrand(60, 120)
+      sleep 0.25
+      
+      
+      3.times do
+        
+        play choose(chord(:a3, :m11)), release: 0.3, cutoff: rrand(60, 120)
+        sleep 0.25
+        play choose(chord(:a2, :m11)), release: 0.3, cutoff: rrand(60, 120)
+        sleep 0.25
+        play choose(chord(:a1, :m11)), release: 0.3, cutoff: rrand(60, 120)
+      end
+      
+      4.times do
+        
+        play choose(chord(:a2, :m11)), release: 0.3, cutoff: rrand(60, 120)
+        sleep 0.25
+        
+      end
+      
+      
+      2.times do
+        
+        play choose(chord(:a3, :m11)), release: 0.3, cutoff: rrand(60, 120)
+        sleep 0.25
+        
+      end
+      
+      
+      1.times do
+        
+        play choose(chord(:e4, :m11)), release: 0.3, cutoff: rrand(60, 120)
+        sleep 0.25
+        
+      end
+      
+      
+    end
+  end
+  
+end
+
+define :piano2ANDFlute1 do
+  live_loop :piano1Replace, amp:4 do
+    sleep 5
+    sample sam+"IN USE/Flute_Mood 2_Loop 11_104BPM.wav", amp:2
+    sleep 9
+    
+    sample sam+"IN USE/Flute_Mood 1_Loop 4_104BPM.wav", amp:2
+    sleep 11
+    
+    
+    
+  end
+end
+define:drumANDethernal1   do
+  
+  live_loop :int_one, amp:4 do
+    sample sam+"IN USE/Kit 1_Groove 2_175BPM.wav", amp:2
+    sleep 11
+    
+    
+  end
+  
+end
+
+define:drumANDethernal2   do
+  
+  live_loop :int_one, amp:2 do
+    
+    use_random_seed 400
+    with_fx :eq, amp:2 ,  cutoff: rrand(100, 10) do
+      
+      sample sam+"drumnbass_kit2/drumnbass_kit2/Groove 3 (Bouncin_)/Pack#2_Kit 2_Groove 3_Alternate 1_160BPM.wav", amp:2
+      
+      
+      sleep 20
+      
+      sample sam+"ethereal-soundscapes/ethereal-soundscapes/Pack#10_Soundscapes_Mood8_Flurry of Notes (Dreamy)_F Major.wav", amp:4, attack:rrand(100,60)
+      sleep 40
+      
+    end
+    
+  end
+  
+end
+
+
+define :float1SaxOFFother do
+  
+  live_loop :Flugelhorn do
+    sample sam+"IN USE/Flugelhorn_Mood_5_Loop 2_F Minor_62BPM.wav", amp:4
+    sleep 80
+    
+    
+    
+  end
+  
+end
+
+
+
+
+
+##main Body
+
+piano1ANDFlute2
+sleep 10
+drumANDethernal2
+sleep 20
+piano2ANDFlute1
+sleep 10
+
+float1SaxOFFother
+sleep 20
+drumANDethernal2
+sleep 30
+piano1ANDFlute2
+
+
