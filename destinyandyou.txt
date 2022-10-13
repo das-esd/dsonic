@@ -1,0 +1,78 @@
+use_synth :hollow
+use_random_seed 369
+with_fx :reverb, amp: 0.5 do
+  
+  live_loop :note1 do
+    play choose([:e5,:f6]), attack: 6, release: 6
+    sleep 4
+  end
+  
+  live_loop :note2 do
+    play choose([:a6,:d6]), attack: 4, release: 5
+    sleep 6
+  end
+  
+  live_loop :note3 do
+    play choose([:f6, :e5]), attack: 5, release: 5
+    sleep 10
+  end
+  
+end
+
+sleep 15
+
+
+
+live_loop :bass1 do
+  sample :drum_cymbal_closed, amp: rrand(0.8,1.2), rate: [2, 2,1, 1,1,2].choose if one_in(2)
+  sleep 0.125
+end
+sleep 2
+live_loop :bass3 do
+  sample :drum_cymbal_pedal, amp: rrand(0.8,1.2), rate: [ 2,1, 1,1,2].choose if one_in(2)
+  sleep 0.125
+end
+live_loop :bass2 do
+  sample :drum_heavy_kick, amp: rrand(1,1.4), rate: [1, 1,2, 1,1,2].choose if one_in(2)
+  sleep 0.25
+end
+
+
+
+sleep 15
+
+live_loop :cymbal do
+  16.times do
+    sample :drum_cymbal_pedal, start: 0.05, finish: 0.4, rate: 3, amp: 0.5 + rrand(-0.1, 0.1)
+    sleep 0.125
+  end
+  4.times do
+    sample :drum_cymbal_pedal, start: 0.05, finish: 0.6, rate: 3, amp: 0.5 + rrand(-0.1, 0.1)
+    sleep 0.25
+  end
+  16.times do
+    sample :drum_cymbal_pedal, start: 0.1, finish: 0.3, rate: 3, amp: 0.5 + rrand(-0.1, 0.1)
+    sleep 0.0625
+  end
+end
+
+with_fx :reverb , room: 1 do
+  with_fx :pan, amp: rrand(0.8,0.95), room: 1 do
+    use_bpm 65
+    use_random_seed 363663
+    notes1 = (ring :E5, :F6, :D6, :A6, :E4, :F6, :A6, :E4, :D6)
+    use_synth :piano
+    live_loop :float do
+      play notes1.tick, amp: rrand(2,3)
+      sleep 0.5
+    end
+    with_fx :echo, mix: 0.2, room: 0.6 do
+      notes2 = (ring :E5, :D6, :A6, :B6, :E5, :F6, :G6, :F6,:D6)
+      live_loop :slow do
+        play notes2.tick ,amp: rrand(1,1.5)
+        sleep 0.75
+      end
+    end
+    
+  end
+end
