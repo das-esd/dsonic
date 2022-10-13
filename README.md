@@ -1,3 +1,3 @@
-# dsonic
+# DSonic
 
-# <a href="">Sonic Pi</a>
+# <a href="https://sonic-pi.net/">Sonic Pi</a>
