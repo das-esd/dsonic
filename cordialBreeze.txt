@@ -1,0 +1,113 @@
+
+with_fx :reverb , room: 1 do
+  with_fx :pan, amp: rrand(0.8,0.95), room: 1 do
+    use_bpm 70
+    use_random_seed 300
+    
+    notes1f = (ring :d5,:f4,:a4,:g4,:a4)
+    
+    notes2f = (ring :d5,:f4,:a4,:f2,:e5,:a4,:d5,:f4,:g4,:a4,
+               :e5,:d4,:f4,:a4,:d5,:a4,:g4)
+    
+    notes3f = (ring :d2,:f4,:g4,:a4,:f2,:d5,:d4,:f5,:g4,:f5,
+               :d5,:f5,:a4,:g4)
+    
+    live_loop :float do
+      use_synth :piano
+      play notes1f.tick, amp: rrand(2,3)
+      sleep 0.5
+    end
+    
+    
+    sleep 6
+    
+    
+    with_fx :echo, mix: 0.2, room: 0.6 do
+      notes1d = (ring :d4, :a5)
+      live_loop :slow do
+        use_synth :piano
+        play notes1d.tick ,amp: rrand(0.75,1),pan:rrand(0.5,-0.5)
+        sleep 0.75
+      end
+    end
+    
+    sleep 10
+    
+    live_loop :float do
+      use_synth :piano
+      play notes2f.tick, amp: rrand(2,3)
+      sleep 0.5
+    end
+    
+    sleep 10
+    
+    with_fx :echo, mix: 0.2, room: 0.6 do
+      notes1d = (ring :a2, :d6)
+      live_loop :slow do
+        use_synth :piano
+        play notes1d.tick ,amp: rrand(0.75,1),pan:rrand(0.5,-0.5)
+        sleep 0.75
+      end
+    end
+    
+    sleep 10
+    
+    live_loop :float do
+      use_synth :piano
+      play notes3f.tick, amp: rrand(2,3)
+      sleep 0.5
+    end
+    
+    sleep 10
+    
+    with_fx :echo, mix: 0.2, room: 0.6 do
+      notes1d = (ring :d2, :d6)
+      live_loop :slow do
+        use_synth :piano
+        play notes1d.tick ,amp: rrand(0.75,1),pan:rrand(0.5,-0.5)
+        sleep 0.75
+      end
+    end
+    
+    sleep 10
+    
+    
+    with_fx :echo, mix: 0.2, room: 0.6 do
+      notes1d = (ring :a2, :a5)
+      live_loop :slow do
+        use_synth :piano
+        play notes1d.tick ,amp: rrand(0.75,1),pan:rrand(0.5,-0.5)
+        sleep 0.75
+      end
+    end
+    
+    sleep 10
+    
+    live_loop :float do
+      use_synth :piano
+      play notes2f.tick, amp: rrand(2,3)
+      sleep 0.5
+    end
+    
+    
+    sleep 10
+    
+    with_fx :echo, mix: 0.2, room: 0.6 do
+      notes1d = (ring :a5, :f5)
+      live_loop :slow do
+        use_synth :piano
+        play notes1d.tick ,amp: rrand(0.75,1),pan:rrand(0.5,-0.5)
+        sleep 0.75
+      end
+    end
+    sleep 10
+    
+    live_loop :float do
+      use_synth :piano
+      play notes2f.tick, amp: rrand(2,3)
+      sleep 0.5
+    end
+    
+    
+  end
+end
